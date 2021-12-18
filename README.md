@@ -1,4 +1,4 @@
-# KPN_IPTV
+# ASUS_KPN_IPTV
 Collection of scripts and links to get your own asus router running on dutch KPN glasfiber internet.
 
 ## links with information on how to configure your router:
