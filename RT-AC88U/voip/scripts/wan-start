@@ -1,11 +1,14 @@
 #!/bin/sh
 
+MYCPUPORT=$(robocfg show | grep 'vlan1:' | awk '{print $NF}')
+echo "The cpu port is $MYCPUPORT" | logger
+
 # Leave VOIP traffic tagged for original router
-/usr/sbin/robocfg vlan 7 ports "4t 3t CPU-ADDRESS"
+/usr/sbin/robocfg vlan 7 ports "4t 3t $MYCPUPORT"
 
 # Setup VLAN4 on the CPU as well so we can talk to it
-/usr/sbin/robocfg vlan 4 ports "4t CPU-ADDRESS"
-# /usr/sbin/robocfg vlan 1 ports "1 2 4 CPU-ADDRESS"
+/usr/sbin/robocfg vlan 4 ports "4t $MYCPUPORT"
+# /usr/sbin/robocfg vlan 1 ports "1 2 4 $MYCPUPORT"
 
 # Add VLAN4 as a physical interface
 /sbin/vconfig add eth0 4
