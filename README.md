@@ -1,5 +1,7 @@
 # ASUS_KPN_IPTV
-Collection of scripts and links to get your own asus router running on dutch KPN glasfiber internet.
+Collection of scripts and links to get your own asus router running on dutch KPN glasfiber internet. The scripts were sourced from basho's post at tweakers.net, with the following modifications:
+
+* modified the wan-start to automatically locate the router's CPU port (or as stated in the manual, CPU address). This means you no longer have to edit the script, so you can skip that part from the manual.
 
 ## links with information on how to configure your router:
 * [bas hoogers manual, pdf](https://bashoogers.nl/tweakers/V4_HANDLEIDING_EIGENROUTERKPN.pdf)
