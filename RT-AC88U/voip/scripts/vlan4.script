@@ -1,0 +1,35 @@
+#!/bin/sh
+
+[ -z "$1" ] && echo "Error: should be called from udhcpc" && exit 1
+
+[ -n "$broadcast" ] && BROADCAST="broadcast $broadcast"
+[ -n "$subnet" ] && NETMASK="netmask $subnet"
+
+set_classless_routes() {
+   local max=128
+   local type
+   while [ -n "$1" -a -n "$2" -a $max -gt 0 ]; do
+         [ ${1##*/} -eq 32 ] && type=host || type=net
+            echo "udhcpc: adding route for $type $1 via $2"
+            /sbin/route add -$type "$1" gw "$2" dev "$interface"
+            max=$(($max-1))
+            shift 2
+   done
+}
+
+case "$1" in
+    deconfig)
+      /sbin/ifconfig $interface 0.0.0.0
+      ;;
+
+    leasefail|nak)
+      echo "Failed to obtain lease..."
+      ;;
+    renew|bound)
+      /sbin/ifconfig $interface $ip $BROADCAST $NETMASK
+      [ -n "$staticroutes" ] && set_classless_routes $staticroutes
+      [ -n "$msstaticroutes" ] && set_classless_routes $msstaticroutes
+      ;;
+esac
+
+exit 0

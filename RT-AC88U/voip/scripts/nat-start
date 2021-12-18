@@ -1,0 +1,8 @@
+#!/bin/sh
+
+#Disable rp_filter. Needed for multicast
+echo 0 > /proc/sys/net/ipv4/conf/vlan4/rp_filter
+
+#Enable NAT for vlan4
+iptables -t nat -D POSTROUTING -o vlan4 -j MASQUERADE
+iptables -t nat -I POSTROUTING -o vlan4 -j MASQUERADE

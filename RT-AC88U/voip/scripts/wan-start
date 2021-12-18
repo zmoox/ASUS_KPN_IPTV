@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# Leave VOIP traffic tagged for original router
+/usr/sbin/robocfg vlan 7 ports "4t 3t CPU-ADDRESS"
+
+# Setup VLAN4 on the CPU as well so we can talk to it
+/usr/sbin/robocfg vlan 4 ports "4t CPU-ADDRESS"
+# /usr/sbin/robocfg vlan 1 ports "1 2 4 CPU-ADDRESS"
+
+# Add VLAN4 as a physical interface
+/sbin/vconfig add eth0 4
+
+# Request an IP-address and setup static routes
+
+/usr/bin/killall udhcpc
+sleep 1
+
+udhcpc -i vlan4 --clientid-none -O msstaticroutes -O staticroutes -V IPTV_RG -s /jffs/scripts/vlan4.script -p /var/run/vlan4.pid -b -O33 -O249
+
+# Restart IGMP proxy
+
+sleep 20
+/usr/bin/killall igmpproxy
+sleep 1
+/usr/sbin/igmpproxy /jffs/configs/igmpproxy.conf
