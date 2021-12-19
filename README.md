@@ -4,7 +4,8 @@ Collection of scripts and links to get your own asus router running on dutch KPN
 ## Why use your own router?
 
 * the cheapest KPN supplied router (KPN Box 12) is very basic in terms of functionality and in my case, extremely unstable (spontaneously rebooting every 30 mins or so)
-* when you use the KPN router your wireless passwords are sent and stored at KPN servers for some reason.
+* privacy: when you use the KPN router your wireless passwords are sent and stored at KPN servers for some reason.
+* if you need more than 4 ethernet ports, the Asus RT-AC88U has 8 ports, versus 4 of the KPN Box 12 (not counting the WAN port).
 * It's mandatory (as of December 2016) for internet providers to allow the use of your own router, but they are not extremely helpful about it.
 
 ## Manual
