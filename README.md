@@ -79,7 +79,7 @@ After these steps, you should be able to access the internet via the router.
 ## Script information
 The scripts were sourced from [basho's post at tweakers.net](https://gathering.tweakers.net/forum/list_messages/1772709/0), with the following modifications:
 
-* modified the wan-start to automatically locate the router's CPU port (or as stated in the manual, CPU address). This means you no longer have to edit the script, so you can skip that part from the manual.
+* modified the wan-start to automatically locate the router's CPU port (or as stated in the manual, CPU address). This means you no longer have to edit the script, so you can skip that part from Basho's manual.
 
 ## Tests
 These scripts were verified to result in working internet plus routed IPTV on:
