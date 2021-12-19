@@ -60,6 +60,22 @@ Collection of scripts and links to get your own asus router running on dutch KPN
 
 After these steps, you should be able to access the internet via the router.
 
+### Step 2: configure for routed IPTV
+
+* Go to advanced settings - Administration, system tab, then:
+  - Service
+    - Enable SSH : LAN only
+  - Persistent JFFS2 partition:
+    - Format JFFS partition at next boot : yes (set to NO after reboot, see below)
+    - Enable JFFS custom scripts and configs : yes
+* reboot the router to create and initialize the JFFS2 partition, then **MAKE SURE** to disabe JFFS2 formatting for subsequent reboots
+* Use putty, ssh or winscp to upload the configs and scripts to the router:
+  - upload the contents of .../configs to the routers /jffs/configs
+  - upload the contents of .../scripts to the routers /jffs/scripts
+* make sure the scripts are executable:
+  - in ssh, execute the command `chmod a+rx /jffs/scripts/*`
+* reboot and wait 30 seconds before powering on your IPTV settop box
+
 ## Script information
 The scripts were sourced from [basho's post at tweakers.net](https://gathering.tweakers.net/forum/list_messages/1772709/0), with the following modifications:
 
