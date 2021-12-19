@@ -7,6 +7,58 @@ Collection of scripts and links to get your own asus router running on dutch KPN
 * when you use the KPN router your wireless passwords are sent and stored at KPN servers for some reason.
 * It's mandatory (as of December 2016) for internet providers to allow the use of your own router, but they are not extremely helpful about it.
 
+## Manual
+
+### Step 1: configure for internet access
+
+* make sure your router is running a recent asuswrt-merlin firmware (see [asuswrt-merlin](https://www.asuswrt-merlin.net/)
+* go to advanced settings - WAN, internet connection tab, then:
+  - Basic Config:
+    - WAN Connection Type : PPPoE 	
+    - Enable WAN : Yes
+    - Enable NAT : Yes
+    - Enable UPnP : Yes
+    - Enable secure UPnP mode : Yes
+    - UPNP: Allowed internal port range 1024 to 65535
+    - UPNP: Allowed external port range 1 to 65535
+  - WAN IP Setting:
+    - Get the WAN IP automatically : Yes
+  - WAN DNS Setting:
+    - Connect to DNS Server automatically :	Yes
+    - Forward local domain queries to upstream DNS : No
+    - Enable DNS Rebind protection : No
+    - Enable DNSSEC support : No
+    - Prevent client auto DoH : Auto	
+    - DNS Privacy Protocol : None
+  - Account Settings :
+    - Username : internet
+    - Password : internet
+    - Disconnect after time of inactivity (in seconds) : 0 	
+    - MTU : 1500 	
+    - MRU : 1500 	
+    - Service Name : empty
+    - Access Concentrator Name : empty 	
+    - Host-Uniq (Hexadecimal) : empty 	
+    - Internet Detection : PPP Echo 	
+    - PPP Echo Interval : 6 	
+    - PPP Echo Max Failures : 10 	
+    - Additional pppd options : empty
+* go to advanced settings - LAN, IPTV tab, then:
+  - LAN Port:
+    - Select ISP Profile : Manual 	
+    - Internet 	VID : 6 PRIO 0 
+    - LAN Port 4 VID : empty PRIO 0 
+    - LAN Port 3 VID : empty PRIO 0
+  - Special applications:
+    - Use DHCP routes : RFC3442
+    - Enable multicast routing : Enable	
+    - Enable Fast Leave : Enable
+    - Enable efficient multicast forwarding (IGMP Snooping) : Enable 	
+    - UDP Proxy (Udpxy) : 0
+* Reboot the router
+
+After these steps, you should be able to access the internet via the router.
+
 ## Script information
 The scripts were sourced from [basho's post at tweakers.net](https://gathering.tweakers.net/forum/list_messages/1772709/0), with the following modifications:
 
